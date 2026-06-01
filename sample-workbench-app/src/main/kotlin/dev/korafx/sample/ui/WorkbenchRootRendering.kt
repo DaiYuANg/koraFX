@@ -38,14 +38,17 @@ internal enum class WorkbenchTransitionMode(
     Scale("Scale", RouteTransition.Scale()),
 }
 
-internal fun NodeContainerBuilder.renderWorkbenchModuleBadges(module: ModuleShowcase?) {
-    if (module == null) {
-        return
-    }
+internal fun NodeContainerBuilder.renderWorkbenchModuleBadges(
+    route: WorkbenchRoute,
+    module: ModuleShowcase?,
+) {
     hbox(spacing = 10.0) {
-        badge(module.category.title, ComponentTone.INFO)
-        module.tags.take(4).forEach { tag ->
-            chip(tag, ComponentTone.NEUTRAL)
+        chip(route.path, ComponentTone.NEUTRAL)
+        if (module != null) {
+            badge(module.category.title, ComponentTone.INFO)
+            module.tags.take(4).forEach { tag ->
+                chip(tag, ComponentTone.NEUTRAL)
+            }
         }
     }
 }

@@ -27,4 +27,6 @@ state.forward()
 
 ## Integrating with controls
 
-Use `routeButton` for nav buttons and `routeHost`/`routerHost` for layout-aware route rendering.
+Use `routeButton` for explicit nav buttons, `navigationRail` for static route lists, and
+`searchableNavigationRail` when a workbench has many modules.
+Use `routeHost`/`routerHost` for layout-aware route rendering.

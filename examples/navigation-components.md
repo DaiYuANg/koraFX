@@ -81,6 +81,34 @@ val root = workbenchLayout {
 }
 ```
 
+## Searchable NavigationRail
+
+Use `searchableNavigationRail` when a workbench has enough routes that a static sidebar becomes slow to scan.
+It keeps the same `Navigator` as the source of truth and filters route buttons by `id` or `title` by default.
+
+```kotlin
+val root = workbenchLayout {
+    navigation {
+        searchableNavigationRail(
+            scope = scope,
+            navigator = navigator,
+            searchPrompt = "Search modules",
+            matches = { route, query ->
+                query.isBlank() ||
+                    route.title.contains(query, ignoreCase = true) ||
+                    route.id.contains(query, ignoreCase = true)
+            },
+        )
+    }
+
+    content {
+        routeHost(scope, navigator) { route ->
+            label(route.title)
+        }
+    }
+}
+```
+
 ## RouterHost With Layouts
 
 Use `routerHost` when routes should share reusable layout shells. Shells can be nested, and pages render into the nearest layout outlet.

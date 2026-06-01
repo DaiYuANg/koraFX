@@ -171,7 +171,7 @@ Main API:
 - Core: `Route`, `PathRoute`, `RouteMeta`, `RouteQuery`, `NavigationLocation<R>`, `NavigationState<R>`, `Navigator<R>`
 - Navigation actions: `navigate(...)`, `replace(...)`, `navigatePath(...)`, `replacePath(...)`, `back()`, `forward()`
 - Guards and data: `beforeEach(...)`, `beforeEnter(...)`, `beforeLeave(...)`, `routeDataHost`, `routeStateHost`, `RouteDataController`
-- UI: `navigationRail`, `routeButton`, `pathButton`, `routeLink`, `pathLink`, `routeHost`, `routerHost`, `RouterModule`, `routeLazy`
+- UI: `navigationRail`, `searchableNavigationRail`, `routeButton`, `pathButton`, `routeLink`, `pathLink`, `routeHost`, `routerHost`, `RouterModule`, `routeLazy`
 - Restoration: `routeScrollRestoration`, `routeSelectionRestoration`, `routeFocusRestoration`
 
 Example:
@@ -181,6 +181,12 @@ navigationRail(
     scope = uiScope,
     navigator = navigator,
     icon = { route -> routeIcons[route.id] },
+)
+
+searchableNavigationRail(
+    scope = uiScope,
+    navigator = navigator,
+    searchPrompt = "Search routes",
 )
 ```
 

@@ -268,7 +268,10 @@ class WorkbenchRootView(
             },
         )
 
-        renderWorkbenchModuleBadges(module)
+        renderWorkbenchModuleBadges(
+            route = WorkbenchRoute.findRoute(state.currentRouteId) ?: WorkbenchRoute.Overview,
+            module = module,
+        )
         renderWorkbenchRoute(state, pageContext)
     }
 }

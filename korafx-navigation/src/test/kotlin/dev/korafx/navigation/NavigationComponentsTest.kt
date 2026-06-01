@@ -3,6 +3,7 @@ package dev.korafx.navigation
 import javafx.scene.control.Button
 import javafx.scene.control.Hyperlink
 import javafx.scene.control.Label
+import javafx.scene.control.TextField
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -12,6 +13,7 @@ import org.kordamp.ikonli.javafx.FontIcon
 import java.util.concurrent.atomic.AtomicInteger
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertIs
 import kotlin.test.assertSame
 import kotlin.test.assertTrue
@@ -74,6 +76,52 @@ class NavigationComponentsTest {
 
             FxTestSupport.waitForFxCondition { guardCalls.get() == 1 }
             assertEquals(TestRoute.Home, navigator.currentRoute)
+        } finally {
+            scope.cancel()
+        }
+    }
+
+    @Test
+    fun `searchable navigation rail filters route buttons`() {
+        val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+        val navigator = Navigator(initialRoute = TestRoute.Home, routes = TestRoute.all)
+
+        try {
+            val rail = FxTestSupport.run {
+                lateinit var result: javafx.scene.layout.VBox
+                runOnFxThread {
+                    result = searchableNavigationRail(scope = scope, navigator = navigator)
+                }
+                result
+            }
+
+            FxTestSupport.waitForFxCondition { rail.children.size == 4 }
+            val search = assertIs<TextField>(rail.children[0])
+            val home = assertIs<Button>(rail.children[1])
+            val settings = assertIs<Button>(rail.children[2])
+            val empty = assertIs<Label>(rail.children[3])
+
+            FxTestSupport.runOnFxThread {
+                search.text = "settings"
+            }
+            FxTestSupport.waitForFxCondition {
+                !home.isVisible &&
+                    !home.isManaged &&
+                    settings.isVisible &&
+                    !empty.isVisible
+            }
+
+            FxTestSupport.runOnFxThread {
+                search.text = "missing"
+            }
+            FxTestSupport.waitForFxCondition {
+                !home.isVisible &&
+                    !settings.isVisible &&
+                    empty.isVisible &&
+                    empty.isManaged
+            }
+
+            assertFalse(home.isVisible)
         } finally {
             scope.cancel()
         }
