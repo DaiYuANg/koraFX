@@ -24,6 +24,7 @@ import dev.korafx.dsl.tabPane
 import dev.korafx.framework.theme.KoraTheme
 import dev.korafx.framework.theme.ThemeStyleClass
 import dev.korafx.navigation.bindContentWithTransition
+import dev.korafx.navigation.routeBreadcrumb
 import dev.korafx.sample.di.WorkbenchAppGraph
 import dev.korafx.sample.navigation.WorkbenchRoute
 import dev.korafx.sample.ui.pages.WorkbenchPageContext
@@ -176,14 +177,28 @@ class WorkbenchRootView(
                         maxWidth = Double.MAX_VALUE
                     },
                 ) {
-                }.also { container ->
-                    container.growVertical()
-                    container.bindContentWithTransition(
-                        scope = uiScope,
-                        state = viewModel.state,
-                        transition = transitionMode.map { it.transition },
-                    ) { state ->
-                        renderShowcase(state)
+                    add(
+                        routeBreadcrumb(
+                            scope = uiScope,
+                            navigator = navigator,
+                            homeText = "Overview",
+                        ),
+                    )
+                    vbox(
+                        spacing = 18.0,
+                        init = {
+                            maxWidth = Double.MAX_VALUE
+                        },
+                    ) {
+                    }.also { container ->
+                        container.growVertical()
+                        container.bindContentWithTransition(
+                            scope = uiScope,
+                            state = viewModel.state,
+                            transition = transitionMode.map { it.transition },
+                        ) { state ->
+                            renderShowcase(state)
+                        }
                     }
                 }
             }
@@ -268,10 +283,7 @@ class WorkbenchRootView(
             },
         )
 
-        renderWorkbenchModuleBadges(
-            route = WorkbenchRoute.findRoute(state.currentRouteId) ?: WorkbenchRoute.Overview,
-            module = module,
-        )
+        renderWorkbenchModuleBadges(module)
         renderWorkbenchRoute(state, pageContext)
     }
 }

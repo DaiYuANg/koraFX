@@ -81,16 +81,16 @@ signingInMemoryKeyPassword=$SIGNING_KEY_PASSWORD
 POM_NAME=${POM_NAME:-KoraFX}
 POM_DESCRIPTION=${POM_DESCRIPTION:-KoraFX JavaFX helper library}
 POM_INCEPTION_YEAR=${POM_INCEPTION_YEAR:-2026}
-POM_URL=${POM_URL:-https://github.com/DaiYuANg/koraFX}
+POM_URL=${POM_URL:-https://github.com/lyonbrown4d/koraFX}
 POM_LICENSE_NAME=${POM_LICENSE_NAME:-The Apache License, Version 2.0}
 POM_LICENSE_URL=${POM_LICENSE_URL:-https://www.apache.org/licenses/LICENSE-2.0.txt}
 POM_LICENSE_DIST=${POM_LICENSE_DIST:-repo}
-POM_DEVELOPER_ID=${POM_DEVELOPER_ID:-DaiYuANg}
-POM_DEVELOPER_NAME=${POM_DEVELOPER_NAME:-DaiYuANg}
-POM_DEVELOPER_URL=${POM_DEVELOPER_URL:-https://github.com/DaiYuANg}
-POM_SCM_URL=${POM_SCM_URL:-https://github.com/DaiYuANg/koraFX}
-POM_SCM_CONNECTION=${POM_SCM_CONNECTION:-scm:git:https://github.com/DaiYuANg/koraFX.git}
-POM_SCM_DEV_CONNECTION=${POM_SCM_DEV_CONNECTION:-scm:git:ssh://git@github.com/DaiYuANg/koraFX.git}
+POM_DEVELOPER_ID=${POM_DEVELOPER_ID:-lyonbrown4d}
+POM_DEVELOPER_NAME=${POM_DEVELOPER_NAME:-lyonbrown4d}
+POM_DEVELOPER_URL=${POM_DEVELOPER_URL:-https://github.com/lyonbrown4d}
+POM_SCM_URL=${POM_SCM_URL:-https://github.com/lyonbrown4d/koraFX}
+POM_SCM_CONNECTION=${POM_SCM_CONNECTION:-scm:git:https://github.com/lyonbrown4d/koraFX.git}
+POM_SCM_DEV_CONNECTION=${POM_SCM_DEV_CONNECTION:-scm:git:ssh://git@github.com/lyonbrown4d/koraFX.git}
 EOF
       - name: Publish to Maven Central
         run: ./gradlew publishAndReleaseToMavenCentral --no-configuration-cache -PreleaseVersion=${{ env.RELEASE_VERSION }}

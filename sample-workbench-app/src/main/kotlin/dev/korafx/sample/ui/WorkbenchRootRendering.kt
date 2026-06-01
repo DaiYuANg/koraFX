@@ -39,11 +39,9 @@ internal enum class WorkbenchTransitionMode(
 }
 
 internal fun NodeContainerBuilder.renderWorkbenchModuleBadges(
-    route: WorkbenchRoute,
     module: ModuleShowcase?,
 ) {
     hbox(spacing = 10.0) {
-        chip(route.path, ComponentTone.NEUTRAL)
         if (module != null) {
             badge(module.category.title, ComponentTone.INFO)
             module.tags.take(4).forEach { tag ->

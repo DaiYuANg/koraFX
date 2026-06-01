@@ -3,16 +3,16 @@
 KoraFX is now oriented as a Kotlin-first JavaFX application framework. The default path should be direct:
 
 ```kotlin
-implementation(platform("io.github.daiyuang:korafx-bom:<version>"))
-implementation("io.github.daiyuang:korafx-framework")
-implementation("io.github.daiyuang:korafx-navigation") // optional direct navigation core + UI
-implementation("io.github.daiyuang:korafx-command-palette") // optional advanced command surfaces
-implementation("io.github.daiyuang:korafx-components")
-implementation("io.github.daiyuang:korafx-data-grid") // optional advanced table/grid surfaces
-implementation("io.github.daiyuang:korafx-inspector-panel") // optional advanced inspector/detail surfaces
-implementation("io.github.daiyuang:korafx-resource-explorer") // optional advanced resource tree surfaces
-implementation("io.github.daiyuang:korafx-source-editor") // optional advanced editor surfaces
-testImplementation("io.github.daiyuang:korafx-test") // optional TestFX-backed JavaFX testing utilities
+implementation(platform("io.github.lyonbrown4d:korafx-bom:<version>"))
+implementation("io.github.lyonbrown4d:korafx-framework")
+implementation("io.github.lyonbrown4d:korafx-navigation") // optional direct navigation core + UI
+implementation("io.github.lyonbrown4d:korafx-command-palette") // optional advanced command surfaces
+implementation("io.github.lyonbrown4d:korafx-components")
+implementation("io.github.lyonbrown4d:korafx-data-grid") // optional advanced table/grid surfaces
+implementation("io.github.lyonbrown4d:korafx-inspector-panel") // optional advanced inspector/detail surfaces
+implementation("io.github.lyonbrown4d:korafx-resource-explorer") // optional advanced resource tree surfaces
+implementation("io.github.lyonbrown4d:korafx-source-editor") // optional advanced editor surfaces
+testImplementation("io.github.lyonbrown4d:korafx-test") // optional TestFX-backed JavaFX testing utilities
 ```
 
 Runtime code is intentionally split into focused publishable modules: `korafx-dsl`, `korafx-navigation`, `korafx-framework`, `korafx-components`, and optional advanced modules such as `korafx-command-palette`, `korafx-data-grid`, `korafx-inspector-panel`, `korafx-resource-explorer`, and `korafx-source-editor`.
@@ -171,7 +171,7 @@ Main API:
 - Core: `Route`, `PathRoute`, `RouteMeta`, `RouteQuery`, `NavigationLocation<R>`, `NavigationState<R>`, `Navigator<R>`
 - Navigation actions: `navigate(...)`, `replace(...)`, `navigatePath(...)`, `replacePath(...)`, `back()`, `forward()`
 - Guards and data: `beforeEach(...)`, `beforeEnter(...)`, `beforeLeave(...)`, `routeDataHost`, `routeStateHost`, `RouteDataController`
-- UI: `navigationRail`, `searchableNavigationRail`, `routeButton`, `pathButton`, `routeLink`, `pathLink`, `routeHost`, `routerHost`, `RouterModule`, `routeLazy`
+- UI: `navigationRail`, `searchableNavigationRail`, `routeBreadcrumb`, `routeButton`, `pathButton`, `routeLink`, `pathLink`, `routeHost`, `routerHost`, `RouterModule`, `routeLazy`
 - Restoration: `routeScrollRestoration`, `routeSelectionRestoration`, `routeFocusRestoration`
 
 Example:
@@ -187,6 +187,12 @@ searchableNavigationRail(
     scope = uiScope,
     navigator = navigator,
     searchPrompt = "Search routes",
+)
+
+routeBreadcrumb(
+    scope = uiScope,
+    navigator = navigator,
+    homeText = "Overview",
 )
 ```
 
@@ -219,7 +225,7 @@ Icon usage:
 
 ```kotlin
 dependencies {
-    implementation("org.kordamp.ikonli:ikonli-bootstrapicons-pack:<ikonli-version>")
+    implementation("org.kordamp.ikonli:ikonli-bootstrapicons-pack")
 }
 
 chip(
@@ -423,7 +429,7 @@ Example:
 
 ```kotlin
 dependencies {
-    implementation("io.github.daiyuang:korafx-devtools")
+    implementation("io.github.lyonbrown4d:korafx-devtools")
 }
 
 fun main(args: Array<String>) = koraApplication(args) {
@@ -477,7 +483,7 @@ Example:
 
 ```kotlin
 dependencies {
-    implementation("io.github.daiyuang:korafx-macos")
+    implementation("io.github.lyonbrown4d:korafx-macos")
 }
 
 fun main(args: Array<String>) = koraApplication(args) {

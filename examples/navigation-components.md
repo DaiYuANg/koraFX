@@ -109,6 +109,25 @@ val root = workbenchLayout {
 }
 ```
 
+## Route Breadcrumb
+
+Use `routeBreadcrumb` when the current path should be visible as a small route-aware trail.
+The component itself lives in `korafx-components`; this navigation helper only maps `Navigator` state into breadcrumb items.
+
+```kotlin
+val header = pageHeader(
+    title = navigator.currentRoute.title,
+) {
+    add(
+        routeBreadcrumb(
+            scope = scope,
+            navigator = navigator,
+            homeText = "Overview",
+        ),
+    )
+}
+```
+
 ## RouterHost With Layouts
 
 Use `routerHost` when routes should share reusable layout shells. Shells can be nested, and pages render into the nearest layout outlet.

@@ -1,9 +1,10 @@
 # Publishing Setup (reference)
 
 KoraFX uses `com.vanniktech.maven.publish` and reads publishing metadata from environment variables.
-Current coordinates are under groupId `io.github.daiyuang`.
+Current coordinates are under groupId `io.github.lyonbrown4d`.
 Published artifactIds use the `korafx-*` prefix, for example `korafx-framework`.
 The BOM artifactId is `korafx-bom`.
+The BOM aligns KoraFX modules and the third-party versions the framework is tested against, including Kotlin coroutines, Koin, Ikonli, Caffeine, and TestFX.
 
 ## Env file example
 
@@ -20,16 +21,16 @@ signingInMemoryKeyPassword=<gpg-key-password>
 POM_NAME=korafx-framework
 POM_DESCRIPTION=Kotlin-first JavaFX application framework with Koin, MVVM, navigation and theme services.
 POM_INCEPTION_YEAR=2026
-POM_URL=https://github.com/DaiYuANg/koraFX
+POM_URL=https://github.com/lyonbrown4d/koraFX
 POM_LICENSE_NAME=The Apache License, Version 2.0
 POM_LICENSE_URL=https://www.apache.org/licenses/LICENSE-2.0.txt
 POM_LICENSE_DIST=repo
-POM_DEVELOPER_ID=DaiYuANg
-POM_DEVELOPER_NAME=DaiYuANg
-POM_DEVELOPER_URL=https://github.com/DaiYuANg
-POM_SCM_URL=https://github.com/DaiYuANg/koraFX
-POM_SCM_CONNECTION=scm:git:https://github.com/DaiYuANg/koraFX.git
-POM_SCM_DEV_CONNECTION=scm:git:ssh://git@github.com/DaiYuANg/koraFX.git
+POM_DEVELOPER_ID=lyonbrown4d
+POM_DEVELOPER_NAME=lyonbrown4d
+POM_DEVELOPER_URL=https://github.com/lyonbrown4d
+POM_SCM_URL=https://github.com/lyonbrown4d/koraFX
+POM_SCM_CONNECTION=scm:git:https://github.com/lyonbrown4d/koraFX.git
+POM_SCM_DEV_CONNECTION=scm:git:ssh://git@github.com/lyonbrown4d/koraFX.git
 ```
 
 Per-module publish usually only needs different `POM_NAME` and `POM_DESCRIPTION`.
@@ -41,23 +42,24 @@ Per-module publish usually only needs different `POM_NAME` and `POM_DESCRIPTION`
 ```
 
 ```properties
-implementation(platform("io.github.daiyuang:korafx-bom:<version>"))
-implementation("io.github.daiyuang:korafx-framework:<version>")
+implementation(platform("io.github.lyonbrown4d:korafx-bom:<version>"))
+implementation("io.github.lyonbrown4d:korafx-framework:<version>")
 ```
 
 With the BOM, omit repeated module versions:
 
 ```properties
-implementation(platform("io.github.daiyuang:korafx-bom:<version>"))
-implementation("io.github.daiyuang:korafx-framework")
-implementation("io.github.daiyuang:korafx-navigation")
-implementation("io.github.daiyuang:korafx-command-palette")
-implementation("io.github.daiyuang:korafx-components")
-implementation("io.github.daiyuang:korafx-data-grid")
-implementation("io.github.daiyuang:korafx-inspector-panel")
-implementation("io.github.daiyuang:korafx-resource-explorer")
-implementation("io.github.daiyuang:korafx-source-editor")
-testImplementation("io.github.daiyuang:korafx-test")
+implementation(platform("io.github.lyonbrown4d:korafx-bom:<version>"))
+implementation("io.github.lyonbrown4d:korafx-framework")
+implementation("io.github.lyonbrown4d:korafx-navigation")
+implementation("io.github.lyonbrown4d:korafx-command-palette")
+implementation("io.github.lyonbrown4d:korafx-components")
+implementation("io.github.lyonbrown4d:korafx-data-grid")
+implementation("io.github.lyonbrown4d:korafx-inspector-panel")
+implementation("io.github.lyonbrown4d:korafx-resource-explorer")
+implementation("io.github.lyonbrown4d:korafx-source-editor")
+testImplementation("io.github.lyonbrown4d:korafx-test")
+implementation("org.kordamp.ikonli:ikonli-bootstrapicons-pack")
 ```
 
 Local validation:

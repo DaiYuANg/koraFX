@@ -20,5 +20,24 @@ dependencies {
         api(project(":korafx-test"))
         api(project(":korafx-devtools"))
         api(project(":korafx-macos"))
+
+        api(libs.kotlinx.coroutines.core)
+        api(libs.kotlinx.coroutines.javafx)
+        api(libs.kotlinx.coroutines.test)
+        api(libs.koin.core) {
+            version {
+                require(libs.versions.koin.bom.get())
+            }
+        }
+        api(libs.ikonli.javafx)
+        api(libs.ikonli.bootstrapicons.pack)
+        api(libs.caffeine)
+        api(libs.testfx.core)
+        api(libs.testfx.junit5)
+        api(libs.kotlin.test.junit5) {
+            version {
+                require(libs.versions.kotlin.get())
+            }
+        }
     }
 }

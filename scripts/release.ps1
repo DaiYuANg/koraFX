@@ -11,16 +11,28 @@ $ErrorActionPreference = "Stop"
 
 $gradlew = Join-Path $PSScriptRoot "..\gradlew.bat"
 
+if (-not [string]::IsNullOrWhiteSpace($Version)) {
+    $Version = $Version.Trim().TrimStart("v")
+}
+
 if ($Mode -eq "local") {
     Write-Host "Publishing to local Maven cache (snapshot allowed)."
     $tasks = @(
         ":korafx-bom:publishToMavenLocal",
-        ":framework-dsl:publishToMavenLocal",
-        ":framework-state:publishToMavenLocal",
-        ":framework-mvvm:publishToMavenLocal",
-        ":framework-navigation:publishToMavenLocal",
-        ":framework-theme:publishToMavenLocal",
-        ":framework-components:publishToMavenLocal"
+        ":korafx-dsl:publishToMavenLocal",
+        ":korafx-navigation:publishToMavenLocal",
+        ":korafx-framework:publishToMavenLocal",
+        ":korafx-command-palette:publishToMavenLocal",
+        ":korafx-components:publishToMavenLocal",
+        ":korafx-data-grid:publishToMavenLocal",
+        ":korafx-graph-editor:publishToMavenLocal",
+        ":korafx-inspector-panel:publishToMavenLocal",
+        ":korafx-resource-explorer:publishToMavenLocal",
+        ":korafx-virtual-list:publishToMavenLocal",
+        ":korafx-source-editor:publishToMavenLocal",
+        ":korafx-test:publishToMavenLocal",
+        ":korafx-devtools:publishToMavenLocal",
+        ":korafx-macos:publishToMavenLocal"
     )
 } else {
     $envPath = Join-Path $PSScriptRoot "..\.env"
@@ -56,7 +68,6 @@ if ($Mode -eq "central" -and [string]::IsNullOrWhiteSpace($Version)) {
 }
 
 if ($Mode -eq "central" -and -not [string]::IsNullOrWhiteSpace($Version)) {
-    $Version = $Version.Trim().TrimStart("v")
     if ($Version -like "*-SNAPSHOT") {
         throw "Release mode requires a non-SNAPSHOT version. Got: $Version"
     }
@@ -67,7 +78,7 @@ if ($NoConfigurationCache) {
     $cacheOption += "--no-configuration-cache"
 }
 
-if ($Mode -eq "central" -and -not [string]::IsNullOrWhiteSpace($Version)) {
+if (-not [string]::IsNullOrWhiteSpace($Version)) {
     $tasks = @("-PreleaseVersion=$Version") + $tasks
 }
 

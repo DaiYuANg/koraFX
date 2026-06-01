@@ -10,7 +10,7 @@ plugins {
 
 apply(plugin = libs.plugins.dotenv.get().pluginId)
 
-group = "io.github.daiyuang"
+group = "io.github.lyonbrown4d"
 version = providers.gradleProperty("releaseVersion").orElse("0.1.0-SNAPSHOT").get()
 
 subprojects {
@@ -36,7 +36,7 @@ subprojects {
                     }
                 )
                 inceptionYear.set(stringPropertyOrDefault("POM_INCEPTION_YEAR") { "2026" })
-                url.set(stringPropertyOrDefault("POM_URL") { "https://github.com/DaiYuANg/koraFX" })
+                url.set(stringPropertyOrDefault("POM_URL") { "https://github.com/lyonbrown4d/koraFX" })
 
                 licenses {
                     license {
@@ -55,13 +55,13 @@ subprojects {
                 }
                 developers {
                     developer {
-                        id.set(stringPropertyOrDefault("POM_DEVELOPER_ID") { "DaiYuANg" })
-                        name.set(stringPropertyOrDefault("POM_DEVELOPER_NAME") { "DaiYuANg" })
-                        url.set(stringPropertyOrDefault("POM_DEVELOPER_URL") { "https://github.com/DaiYuANg" })
+                        id.set(stringPropertyOrDefault("POM_DEVELOPER_ID") { "lyonbrown4d" })
+                        name.set(stringPropertyOrDefault("POM_DEVELOPER_NAME") { "lyonbrown4d" })
+                        url.set(stringPropertyOrDefault("POM_DEVELOPER_URL") { "https://github.com/lyonbrown4d" })
                     }
                 }
                 scm {
-                    val defaultScmUrl = "https://github.com/DaiYuANg/koraFX"
+                    val defaultScmUrl = "https://github.com/lyonbrown4d/koraFX"
                     val projectScmUrl = stringPropertyOrDefault("POM_SCM_URL") {
                         defaultScmUrl
                     }
@@ -73,7 +73,7 @@ subprojects {
                     )
                     developerConnection.set(
                         stringPropertyOrDefault("POM_SCM_DEV_CONNECTION") {
-                            "scm:git:ssh://git@github.com/DaiYuANg/koraFX.git"
+                            "scm:git:ssh://git@github.com/lyonbrown4d/koraFX.git"
                         }
                     )
                 }

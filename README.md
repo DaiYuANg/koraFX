@@ -36,21 +36,21 @@ sample-workbench-app  Runnable sample app
 Application code should start from the direct dependency path:
 
 ```kotlin
-implementation(platform("io.github.daiyuang:korafx-bom:<version>"))
-implementation("io.github.daiyuang:korafx-framework")
-implementation("io.github.daiyuang:korafx-navigation") // optional when using navigation without framework
-implementation("io.github.daiyuang:korafx-command-palette") // only when command palette surfaces are needed
-implementation("io.github.daiyuang:korafx-components")
-implementation("io.github.daiyuang:korafx-data-grid") // only when table/grid surfaces are needed
-implementation("io.github.daiyuang:korafx-inspector-panel") // only when detail/inspector surfaces are needed
-implementation("io.github.daiyuang:korafx-resource-explorer") // only when tree/resource explorer surfaces are needed
-implementation("io.github.daiyuang:korafx-source-editor") // only when editor surfaces are needed
-implementation("io.github.daiyuang:korafx-virtual-list") // optional virtualized list component
-implementation("io.github.daiyuang:korafx-graph-editor") // optional graph editor surfaces
-testImplementation("io.github.daiyuang:korafx-test") // only for JavaFX UI/component tests
-implementation("io.github.daiyuang:korafx-devtools") // keep this in development builds when possible
+implementation(platform("io.github.lyonbrown4d:korafx-bom:<version>"))
+implementation("io.github.lyonbrown4d:korafx-framework")
+implementation("io.github.lyonbrown4d:korafx-navigation") // optional when using navigation without framework
+implementation("io.github.lyonbrown4d:korafx-command-palette") // only when command palette surfaces are needed
+implementation("io.github.lyonbrown4d:korafx-components")
+implementation("io.github.lyonbrown4d:korafx-data-grid") // only when table/grid surfaces are needed
+implementation("io.github.lyonbrown4d:korafx-inspector-panel") // only when detail/inspector surfaces are needed
+implementation("io.github.lyonbrown4d:korafx-resource-explorer") // only when tree/resource explorer surfaces are needed
+implementation("io.github.lyonbrown4d:korafx-source-editor") // only when editor surfaces are needed
+implementation("io.github.lyonbrown4d:korafx-virtual-list") // optional virtualized list component
+implementation("io.github.lyonbrown4d:korafx-graph-editor") // optional graph editor surfaces
+testImplementation("io.github.lyonbrown4d:korafx-test") // only for JavaFX UI/component tests
+implementation("io.github.lyonbrown4d:korafx-devtools") // keep this in development builds when possible
 // Pick any Ikonli pack in the application when icons are needed.
-implementation("org.kordamp.ikonli:ikonli-bootstrapicons-pack:<ikonli-version>")
+implementation("org.kordamp.ikonli:ikonli-bootstrapicons-pack")
 ```
 
 Minimal framework entry:
