@@ -777,7 +777,9 @@ val timeline = activityTimeline(
 ```kotlin
 import dev.korafx.commandpalette.CommandPaletteCommand
 import dev.korafx.commandpalette.CommandPaletteHost
+import dev.korafx.commandpalette.commandMenuBar
 import dev.korafx.commandpalette.commandPalette
+import dev.korafx.commandpalette.commandToolbar
 
 val paletteHost = CommandPaletteHost(
     listOf(
@@ -803,11 +805,11 @@ val paletteHost = CommandPaletteHost(
 val root = stackPane {
     add(workbenchLayout {
         topBar {
-            toolbar {
-                ghostButton("Commands") {
-                    onAction {
-                        paletteHost.show()
-                    }
+            commandMenuBar(paletteHost, groupOrder = listOf("Navigation", "Theme"))
+            commandToolbar(paletteHost, commandIds = listOf("open-file", "theme.next"))
+            ghostButton("Commands") {
+                onAction {
+                    paletteHost.show()
                 }
             }
         }

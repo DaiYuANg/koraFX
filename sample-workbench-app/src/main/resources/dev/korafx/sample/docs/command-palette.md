@@ -8,6 +8,7 @@
 - Keyboard and mouse selection.
 - Host visibility control + close behavior.
 - Command model decoupled from UI rendering.
+- Shared command model for palette, menu bar and toolbar surfaces.
 
 ## Example
 
@@ -17,6 +18,9 @@ val host = CommandPaletteHost(commands = commands)
 button("Commands") {
   onAction { host.show() }
 }
+
+commandMenuBar(host, groupOrder = listOf("Navigation", "Theme"))
+commandToolbar(host, commandIds = listOf("theme.previous", "theme.next"))
 commandPalette(host)
 ```
 

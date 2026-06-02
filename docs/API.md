@@ -212,7 +212,7 @@ Package layout:
 
 Main API:
 
-- Shell: `appShell`, `appToolbar`, `toolbarGroup`
+- Shell: `appShell`, `appMenuBar`, `appToolbar`, `toolbarGroup`
 - Overlays: `ModalHost`, `modalHost`, `ModalAction`
 - Layout: `borderLayout`, `workspaceLayout`, `WorkspaceLayout`, `WorkspaceLayoutBuilder`, `tabWorkspace`, `TabWorkspace`, `TabWorkspaceBuilder`
 - Activity: `activityTimeline`, `ActivityTimeline`, `ActivityTimelineBuilder`
@@ -252,7 +252,11 @@ Main API:
 - `dev.korafx.commandpalette.CommandPaletteHost`
 - `dev.korafx.commandpalette.CommandPaletteCommand`
 - `dev.korafx.commandpalette.commandPalette`
+- `dev.korafx.commandpalette.commandMenuBar`
+- `dev.korafx.commandpalette.commandToolbar`
 - `CommandPalette`
+- `CommandMenuBar`
+- `CommandToolbar`
 - `CommandPaletteBuilder`
 
 Guidelines:

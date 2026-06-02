@@ -2,9 +2,6 @@ package dev.korafx.commandpalette
 
 import dev.korafx.dsl.onAction
 import dev.korafx.dsl.styleClass
-import javafx.beans.property.ReadOnlyBooleanProperty
-import javafx.beans.property.SimpleBooleanProperty
-import javafx.collections.FXCollections
 import javafx.collections.ListChangeListener
 import javafx.geometry.Insets
 import javafx.geometry.Pos
@@ -16,56 +13,6 @@ import javafx.scene.layout.HBox
 import javafx.scene.layout.Priority
 import javafx.scene.layout.StackPane
 import javafx.scene.layout.VBox
-
-data class CommandPaletteCommand(
-    val id: String,
-    val title: String,
-    val description: String? = null,
-    val group: String? = null,
-    val action: () -> Unit = {},
-)
-
-class CommandPaletteHost(
-    commands: Iterable<CommandPaletteCommand> = emptyList(),
-) {
-    private val visible = SimpleBooleanProperty(false)
-
-    val commands = FXCollections.observableArrayList<CommandPaletteCommand>()
-
-    val visibleProperty: ReadOnlyBooleanProperty
-        get() = visible
-
-    val isVisible: Boolean
-        get() = visible.get()
-
-    init {
-        setCommands(commands)
-    }
-
-    fun show() {
-        visible.set(true)
-    }
-
-    fun hide() {
-        visible.set(false)
-    }
-
-    fun toggle() {
-        visible.set(!visible.get())
-    }
-
-    fun setCommands(commands: Iterable<CommandPaletteCommand>) {
-        this.commands.setAll(commands.toList())
-    }
-
-    fun addCommand(command: CommandPaletteCommand): CommandPaletteCommand =
-        command.also {
-            commands += it
-        }
-
-    fun removeCommand(id: String): Boolean =
-        commands.removeIf { it.id == id }
-}
 
 class CommandPalette internal constructor(
     val host: CommandPaletteHost,
@@ -191,12 +138,18 @@ class CommandPalette internal constructor(
 
     fun executeSelected(): Boolean {
         val command = filteredCommands.getOrNull(selectedIndex) ?: return false
+        if (!command.isEnabled()) {
+            return false
+        }
         execute(command)
         return true
     }
 
     fun execute(commandId: String): Boolean {
         val command = host.commands.firstOrNull { it.id == commandId } ?: return false
+        if (!command.isEnabled()) {
+            return false
+        }
         execute(command)
         return true
     }
@@ -249,6 +202,7 @@ class CommandPalette internal constructor(
                 styleClass("command-palette-row-selected")
             }
             maxWidth = Double.MAX_VALUE
+            isDisable = !command.isEnabled()
             contentDisplay = javafx.scene.control.ContentDisplay.GRAPHIC_ONLY
             graphic = HBox(10.0).apply {
                 styleClass("command-palette-row-content")
@@ -278,8 +232,10 @@ class CommandPalette internal constructor(
         }
 
     private fun execute(command: CommandPaletteCommand) {
-        command.action()
-        host.hide()
+        if (command.isEnabled()) {
+            command.action()
+            host.hide()
+        }
     }
 
     private fun refreshSelectionStyles() {

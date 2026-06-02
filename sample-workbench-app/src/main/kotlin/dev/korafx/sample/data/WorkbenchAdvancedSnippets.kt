@@ -75,8 +75,8 @@ internal fun advancedWorkbenchSourceSnippets(): List<SourceSnippet> =
         SourceSnippet(
             id = "command-palette-host",
             module = "CommandPalette",
-            title = "Command palette host",
-            description = "Register command objects once and show the host from toolbar shortcuts or key bindings.",
+            title = "Shared command host",
+            description = "Register command objects once and render them as a menu bar, toolbar and command palette.",
             language = "kotlin",
             routeIds = setOf("command-palette"),
             code = """
@@ -92,9 +92,8 @@ internal fun advancedWorkbenchSourceSnippets(): List<SourceSnippet> =
                     ),
                 )
 
-                button("Commands") {
-                    onAction { host.show() }
-                }
+                commandMenuBar(host, groupOrder = listOf("Theme"))
+                commandToolbar(host, commandIds = listOf("theme.next"))
                 commandPalette(host)
             """.trimIndent(),
         ),

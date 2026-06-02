@@ -1,5 +1,7 @@
 package dev.korafx.sample.ui.pages
 
+import dev.korafx.commandpalette.commandMenuBar
+import dev.korafx.commandpalette.commandToolbar
 import dev.korafx.components.actionBar
 import dev.korafx.components.section
 import dev.korafx.dsl.NodeContainerBuilder
@@ -24,5 +26,20 @@ fun NodeContainerBuilder.commandPalettePage(context: WorkbenchPageContext) {
                 }
             }
         }
+    }
+
+    section(
+        title = "Shared command surfaces",
+        description = "The same command host can render a global menu bar, toolbar actions and the keyboard palette.",
+    ) {
+        commandMenuBar(
+            host = context.commandPaletteHost,
+            groupOrder = listOf("Navigation", "Theme"),
+        )
+        commandToolbar(
+            host = context.commandPaletteHost,
+            commandIds = listOf("theme.previous", "theme.next", "theme.toggle"),
+            separateGroups = false,
+        )
     }
 }

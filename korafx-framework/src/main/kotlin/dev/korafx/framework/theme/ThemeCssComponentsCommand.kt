@@ -11,6 +11,25 @@ internal fun StylesheetBuilder.componentCommandPaletteStyles(context: ThemeCssCo
         fx("background-color", "transparent")
     }
 
+    rule(".command-menu-bar", ".command-toolbar") {
+        fx("background-color", colors.surfaceMuted)
+        fx("border-color", "transparent transparent ${colors.border} transparent")
+        padding(spacing.sm, spacing.xl)
+    }
+
+    rule(".command-menu", ".command-menu-item") {
+        fx("background-color", "transparent")
+    }
+
+    rule(".button.command-toolbar-action") {
+        ghostControl(context)
+        fx("alignment", "center-left")
+    }
+
+    rule(".button.command-toolbar-action:hover") {
+        fx("background-color", states.surfaceHover)
+    }
+
     rule(".command-palette-scrim") {
         fx("background-color", "rgba(15, 23, 42, 0.38)")
     }

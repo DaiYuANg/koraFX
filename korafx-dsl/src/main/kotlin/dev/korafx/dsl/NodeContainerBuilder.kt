@@ -5,6 +5,7 @@ import javafx.scene.Node
 import javafx.scene.control.Button
 import javafx.scene.control.CheckBox
 import javafx.scene.control.Label
+import javafx.scene.control.MenuBar
 import javafx.scene.control.ScrollPane
 import javafx.scene.control.Separator
 import javafx.scene.control.SplitPane
@@ -99,6 +100,11 @@ abstract class NodeContainerBuilder internal constructor() {
         init: ToolBar.() -> Unit = {},
         content: ToolBarBuilder.() -> Unit,
     ): ToolBar = add(dev.korafx.dsl.toolbar(init, content))
+
+    fun menuBar(
+        init: MenuBar.() -> Unit = {},
+        content: MenuBarBuilder.() -> Unit,
+    ): MenuBar = add(dev.korafx.dsl.menuBar(init, content))
 
     fun scrollPane(
         init: ScrollPane.() -> Unit = {},

@@ -112,6 +112,7 @@ internal fun assertWorkbenchControlStyles(css: String) {
         ".kora-window-titlebar-content",
         ".button.kora-window-button",
         ".button.kora-window-close-button:hover",
+        ".app-menu-bar",
         ".app-toolbar",
         ".toolbar-group",
         ".app-toolbar-title",

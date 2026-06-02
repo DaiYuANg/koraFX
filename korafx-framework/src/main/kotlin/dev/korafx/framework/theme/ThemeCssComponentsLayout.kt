@@ -160,6 +160,12 @@ internal fun StylesheetBuilder.componentLayoutStyles(context: ThemeCssContext) {
         padding(spacing.md, spacing.xl)
     }
 
+    rule(".app-menu-bar") {
+        fx("background-color", colors.surfaceMuted)
+        fx("border-color", "transparent transparent ${colors.border} transparent")
+        padding(spacing.xs, spacing.xl)
+    }
+
     rule(".toolbar-group", ".app-toolbar-navigation", ".app-toolbar-content", ".app-toolbar-actions") {
         fx("background-color", "transparent")
     }

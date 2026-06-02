@@ -1,6 +1,7 @@
 package dev.korafx.commandpalette
 
 import dev.korafx.dsl.NodeContainerBuilder
+import javafx.scene.input.KeyCombination
 
 class CommandPaletteBuilder internal constructor(
     private val host: CommandPaletteHost,
@@ -11,6 +12,8 @@ class CommandPaletteBuilder internal constructor(
         title: String,
         description: String? = null,
         group: String? = null,
+        shortcut: KeyCombination? = null,
+        enabled: () -> Boolean = { true },
         action: () -> Unit = {},
     ): CommandPaletteCommand =
         host.addCommand(
@@ -20,6 +23,8 @@ class CommandPaletteBuilder internal constructor(
                 description = description,
                 group = group,
                 action = action,
+                shortcut = shortcut,
+                enabled = enabled,
             ),
         )
 
